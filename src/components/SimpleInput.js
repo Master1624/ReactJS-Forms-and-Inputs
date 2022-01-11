@@ -17,10 +17,9 @@ const SimpleInput = (props) => {
 		valueChangeHandler: emailChangeHandler,
 		valueBlurHandler: emailBlurHandler,
 		reset: resetEmailInput,
-	} = useInput((value) => {
-    const emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    value.match(emailFormat)
-  });
+	} = useInput((value) =>
+		/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value),
+	);
 
 	let formIsValid = false;
 
@@ -35,9 +34,8 @@ const SimpleInput = (props) => {
 			return;
 		}
 
-		console.log(enteredName);
 		resetNameInput();
-    resetEmailInput()
+		resetEmailInput();
 	};
 
 	const nameInputClasses = nameInputHasError
